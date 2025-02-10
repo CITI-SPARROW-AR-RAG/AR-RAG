@@ -1,0 +1,6 @@
+AudioPluginMicrosoftSpatializerCrossPlatform.dll
+HrtfDsp.dll
+openxr_loader.dll
+ktx_unity.dll
+UnityOpenXRHands.dll
+lib_burst_generated.dll
