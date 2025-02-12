@@ -42,10 +42,20 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject msgTextBubble;
     [SerializeField] private GameObject msgTextConversation;
 
+    UnityEngine.TouchScreenKeyboard keyboard;
+    public static string keyboardText = "";
+
+    public void OnInputPress()
+    {
+        Debug.Log("Type something in hololens 2");
+        keyboard = TouchScreenKeyboard.Open("text to edit");
+    }
+
     public void OnButtonSendPress()
     {
         // Check if input empty
-        if (inputMsgText != null && !string.IsNullOrEmpty(inputMsgText.text))
+        keyboardText = keyboard.text;
+        if ((inputMsgText != null && !string.IsNullOrEmpty(inputMsgText.text)) || keyboardText != null)
         {
             // Instantiate a msg bubble and fills its text value
             GameObject newMsgBubble = Instantiate(msgTextBubble, msgTextConversation.transform);
@@ -53,7 +63,8 @@ public class GameManager : MonoBehaviour
 
             if (bubbleText != null)
             {
-                bubbleText.text = inputMsgText.text;
+                bubbleText.text = keyboardText;
+                Debug.Log(keyboardText);
             }
             else
             {
