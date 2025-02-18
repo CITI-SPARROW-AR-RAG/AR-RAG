@@ -39,7 +39,6 @@ public class GameManager : MonoBehaviour
 
     #region AI ASSISTANCE
 
-    [SerializeField] private MRTKTMPInputField inputField;
     [SerializeField] private TMP_Text inputMsgText;
     [SerializeField] private GameObject msgTextBubble;
     [SerializeField] private GameObject msgTextConversation;
@@ -68,8 +67,8 @@ public class GameManager : MonoBehaviour
             }
 
             // Clear the input text
-            inputField.text = string.Empty;
-            inputMsgText.text = string.Empty;
+            //inputField.text = string.Empty;
+            //inputMsgText.text = string.Empty;
 
             // Adjust multilines message bubble
             if (rectMsgBubble != null)
