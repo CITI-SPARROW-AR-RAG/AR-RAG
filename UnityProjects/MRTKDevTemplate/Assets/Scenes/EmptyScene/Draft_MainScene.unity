@@ -14559,7 +14559,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6182857754081484277, guid: 69fe087bf58caf141954adcecd8fb3d7, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -186.4
+      value: -209.4
       objectReference: {fileID: 0}
     - target: {fileID: 6182857754081484277, guid: 69fe087bf58caf141954adcecd8fb3d7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -14580,6 +14580,10 @@ PrefabInstance:
     - target: {fileID: 6600933855469968585, guid: 69fe087bf58caf141954adcecd8fb3d7, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7847955116151412569, guid: 69fe087bf58caf141954adcecd8fb3d7, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 17.21
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -19143,7 +19147,6 @@ MonoBehaviour:
   MRTKInputField: {fileID: 36810564}
   msgTextBubble: {fileID: 6600933855469968585, guid: 69fe087bf58caf141954adcecd8fb3d7, type: 3}
   msgTextConversation: {fileID: 591661719}
-  contentRT: {fileID: 591661720}
 --- !u!114 &1920956737
 MonoBehaviour:
   m_ObjectHideFlags: 0

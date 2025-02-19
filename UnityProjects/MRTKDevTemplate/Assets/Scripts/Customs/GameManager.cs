@@ -45,8 +45,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject msgTextBubble;
     [SerializeField] private GameObject msgTextConversation;
 
-    [SerializeField] private RectTransform contentRT;
-
     public void OnButtonSendPress()
     {
         // Check if input empty
@@ -55,31 +53,30 @@ public class GameManager : MonoBehaviour
             // Instantiate a msg bubble and fills its text value
             GameObject newMsgBubble = Instantiate(msgTextBubble, msgTextConversation.transform);
             TMP_Text bubbleText = newMsgBubble.GetComponentInChildren<TMP_Text>();
-            RectTransform rectMsgBubble = newMsgBubble.transform.GetChild(1).GetComponent<RectTransform>();
+            RectTransform messageRT = newMsgBubble.transform.GetChild(1).GetComponent<RectTransform>();
 
 
             if (bubbleText != null)
             {
                 bubbleText.text = inputMsgText.text;
                 bubbleText.ForceMeshUpdate(true);
+
+                // Updata the layout system
+                LayoutRebuilder.ForceRebuildLayoutImmediate(msgTextConversation.GetComponent<RectTransform>());
+                LayoutRebuilder.ForceRebuildLayoutImmediate(newMsgBubble.GetComponent<RectTransform>());
+                LayoutRebuilder.ForceRebuildLayoutImmediate(bubbleText.gameObject.GetComponent<RectTransform>());
+
+                // Resize the msg bubble
+                messageRT.sizeDelta = new Vector2(messageRT.sizeDelta.x, bubbleText.gameObject.GetComponent<RectTransform>().sizeDelta.y);
+                Debug.Log(bubbleText.gameObject.GetComponent<RectTransform>().sizeDelta.y + " and " + bubbleText.gameObject.name);
             }
             else
             {
                 Debug.Log("No TMP_Text component found in the msgTextBubble prefab.");
             }
 
-            // Adjust multilines message bubble
-            if (rectMsgBubble != null)
-            {
-                float newHeight = 18 + 6.5f * (bubbleText.textInfo.lineCount - 1);
-                rectMsgBubble.sizeDelta = new Vector2(rectMsgBubble.sizeDelta.x, newHeight);
-                //Debug.Log(bubbleText.textInfo.lineCount);
-                //Debug.Log("Height of the RectTransform has been changed to: " + newHeight);
-
-            }
-
-            LayoutRebuilder.ForceRebuildLayoutImmediate(newMsgBubble.GetComponent<RectTransform>());
-            LayoutRebuilder.ForceRebuildLayoutImmediate(contentRT);
+            // Updata the whole layout system again
+            LayoutRebuilder.ForceRebuildLayoutImmediate(msgTextConversation.GetComponent<RectTransform>());
 
             // Clear the input text
             MRTKInputField.text = string.Empty;
