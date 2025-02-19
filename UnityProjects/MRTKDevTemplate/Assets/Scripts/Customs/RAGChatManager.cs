@@ -34,7 +34,7 @@ public class RAGChatManager : MonoBehaviour
     [SerializeField] private MRTKTMPInputField MRTKInputField;
 
     [Header("Backend Settings")]
-    [SerializeField] private string backendUrl = "http://140.118.101.186:8000/query";
+    [SerializeField] private string backendUrl = "http://140.118.101.181:8000/query";
 
     private static readonly HttpClient client = new HttpClient();
 
@@ -48,11 +48,11 @@ public class RAGChatManager : MonoBehaviour
         string userMessage = userInputField.text;
 
         await SendQuery(userMessage);
-        Debug.Log(userInputField.text);
+        Debug.Log(userMessage);
         //userInputField.text = "";
 
-        MRTKInputField.text = string.Empty;
-        userInputField.text = string.Empty;
+        //MRTKInputField.text = string.Empty;
+        //userInputField.text = string.Empty;
     }
 
     private async Task SendQuery(string question)

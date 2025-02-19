@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour
     #region AI ASSISTANCE
 
     [SerializeField] private TMP_Text inputMsgText;
+    [SerializeField] private MRTKTMPInputField MRTKInputField;
+
     [SerializeField] private GameObject msgTextBubble;
     [SerializeField] private GameObject msgTextConversation;
 
@@ -66,10 +68,6 @@ public class GameManager : MonoBehaviour
                 Debug.Log("No TMP_Text component found in the msgTextBubble prefab.");
             }
 
-            // Clear the input text
-            //inputField.text = string.Empty;
-            //inputMsgText.text = string.Empty;
-
             // Adjust multilines message bubble
             if (rectMsgBubble != null)
             {
@@ -82,6 +80,10 @@ public class GameManager : MonoBehaviour
 
             LayoutRebuilder.ForceRebuildLayoutImmediate(newMsgBubble.GetComponent<RectTransform>());
             LayoutRebuilder.ForceRebuildLayoutImmediate(contentRT);
+
+            // Clear the input text
+            MRTKInputField.text = string.Empty;
+            inputMsgText.text = string.Empty;
 
         }
         else

@@ -19140,6 +19140,7 @@ MonoBehaviour:
   - {fileID: 793121809}
   - {fileID: 1494061873}
   inputMsgText: {fileID: 1327603187}
+  MRTKInputField: {fileID: 36810564}
   msgTextBubble: {fileID: 6600933855469968585, guid: 69fe087bf58caf141954adcecd8fb3d7, type: 3}
   msgTextConversation: {fileID: 591661719}
   contentRT: {fileID: 591661720}
@@ -19158,7 +19159,7 @@ MonoBehaviour:
   userInputField: {fileID: 1327603187}
   chatOutputText: {fileID: 928036847}
   MRTKInputField: {fileID: 36810564}
-  backendUrl: http://140.118.101.186:8000/query
+  backendUrl: http://140.118.101.181:8000/query
 --- !u!1 &1927556800
 GameObject:
   m_ObjectHideFlags: 0
@@ -19925,7 +19926,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1947121577341454504, guid: 506cbd034c7d76f45b0ef11fe23b8e53, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.871
+      value: 0.785
       objectReference: {fileID: 0}
     - target: {fileID: 1947121577341454504, guid: 506cbd034c7d76f45b0ef11fe23b8e53, type: 3}
       propertyPath: m_LocalRotation.w
