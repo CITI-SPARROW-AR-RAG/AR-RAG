@@ -52,48 +52,51 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject msgTextBubble;
     [SerializeField] private GameObject msgTextConversation;
 
-    public async void OnButtonSendPress()
+    private async void UserSendMsg(string query)
+    {
+        // Instantiate a msg bubble and fills its text value
+        GameObject newMsgBubble = Instantiate(msgTextBubble, msgTextConversation.transform);
+        TMP_Text bubbleText = newMsgBubble.GetComponentInChildren<TMP_Text>();
+        RectTransform messageRT = newMsgBubble.transform.GetChild(1).GetComponent<RectTransform>();
+
+
+        if (bubbleText != null)
+        {
+
+            bubbleText.text = query;
+            bubbleText.ForceMeshUpdate(true);
+
+            // Updata the layout system
+            LayoutRebuilder.ForceRebuildLayoutImmediate(msgTextConversation.GetComponent<RectTransform>());
+            LayoutRebuilder.ForceRebuildLayoutImmediate(newMsgBubble.GetComponent<RectTransform>());
+            LayoutRebuilder.ForceRebuildLayoutImmediate(bubbleText.gameObject.GetComponent<RectTransform>());
+
+            // Resize the msg bubble
+            messageRT.sizeDelta = new Vector2(messageRT.sizeDelta.x, bubbleText.gameObject.GetComponent<RectTransform>().sizeDelta.y);
+            Debug.Log(bubbleText.gameObject.GetComponent<RectTransform>().sizeDelta.y + " and " + bubbleText.gameObject.name);
+
+            // Updata the whole layout system again
+            LayoutRebuilder.ForceRebuildLayoutImmediate(msgTextConversation.GetComponent<RectTransform>());
+
+            // Clear the input text
+            MRTKInputField.text = string.Empty;
+            userInputField.text = string.Empty;
+
+            await chatManager.SendQuery(query);
+            Debug.Log(query);
+        }
+        else
+        {
+            Debug.Log("No TMP_Text component found in the msgTextBubble prefab.");
+        }
+    }
+
+    public void OnButtonSendPress()
     {
         // Check if input empty
         if (userInputField != null && !string.IsNullOrEmpty(userInputField.text))
         {
-            // Instantiate a msg bubble and fills its text value
-            GameObject newMsgBubble = Instantiate(msgTextBubble, msgTextConversation.transform);
-            TMP_Text bubbleText = newMsgBubble.GetComponentInChildren<TMP_Text>();
-            RectTransform messageRT = newMsgBubble.transform.GetChild(1).GetComponent<RectTransform>();
-
-
-            if (bubbleText != null)
-            {
-                string query = userInputField.text;
-
-                bubbleText.text = query;
-                bubbleText.ForceMeshUpdate(true);
-
-                // Updata the layout system
-                LayoutRebuilder.ForceRebuildLayoutImmediate(msgTextConversation.GetComponent<RectTransform>());
-                LayoutRebuilder.ForceRebuildLayoutImmediate(newMsgBubble.GetComponent<RectTransform>());
-                LayoutRebuilder.ForceRebuildLayoutImmediate(bubbleText.gameObject.GetComponent<RectTransform>());
-
-                // Resize the msg bubble
-                messageRT.sizeDelta = new Vector2(messageRT.sizeDelta.x, bubbleText.gameObject.GetComponent<RectTransform>().sizeDelta.y);
-                Debug.Log(bubbleText.gameObject.GetComponent<RectTransform>().sizeDelta.y + " and " + bubbleText.gameObject.name);
-
-                // Updata the whole layout system again
-                LayoutRebuilder.ForceRebuildLayoutImmediate(msgTextConversation.GetComponent<RectTransform>());
-
-                // Clear the input text
-                MRTKInputField.text = string.Empty;
-                userInputField.text = string.Empty;
-
-                await chatManager.SendQuery(query);
-                Debug.Log(query);
-            }
-            else
-            {
-                Debug.Log("No TMP_Text component found in the msgTextBubble prefab.");
-            }
-
+            UserSendMsg(userInputField.text);
         }
         else
         {
@@ -106,18 +109,7 @@ public class GameManager : MonoBehaviour
         // Check if input empty
         if (inquiries != null && !string.IsNullOrEmpty(inquiries))
         {
-            // Instantiate a msg bubble and fills its text value
-            GameObject newMsgBubble = Instantiate(msgTextBubble, msgTextConversation.transform);
-            TMP_Text bubbleText = newMsgBubble.GetComponentInChildren<TMP_Text>();
-
-            if (bubbleText != null)
-            {
-                bubbleText.text = inquiries;
-            }
-            else
-            {
-                Debug.Log("No TMP_Text component found in the msgTextBubble prefab.");
-            }
+            UserSendMsg(inquiries);
         }
         else
         {
