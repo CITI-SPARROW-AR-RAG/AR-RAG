@@ -27,17 +27,15 @@ public class QueryResponse
 
 public class RAGChatManager : MonoBehaviour
 {
-    [Header("UI References")]
-    [SerializeField] private TMP_Text chatOutputText;
-
     [Header("Backend Settings")]
     [SerializeField] private string backendUrl = "http://140.118.101.181:8000/query";
 
     private static readonly HttpClient client = new HttpClient();
 
-    public async Task SendQuery(string question)
+    public async Task<String> SendQuery(string question)
     {
-        var requestData = new { question = question };
+        string formattedQuestion = question + " Please answer the question within 1 short sentence long. ";
+        var requestData = new { question = formattedQuestion };
         string jsonData = JsonConvert.SerializeObject(requestData);
         var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
@@ -49,18 +47,18 @@ public class RAGChatManager : MonoBehaviour
             if (response.IsSuccessStatusCode)
             {
                 var queryResponse = JsonConvert.DeserializeObject<QueryResponse>(responseString);
-                chatOutputText.text = "Assistant: " + queryResponse.answer;
+                return "Assistant: " + queryResponse.answer;
             }
             else
             {
                 Debug.LogError($"Error: {response.StatusCode}");
-                chatOutputText.text = "Error: Failed to get response.";
+                return "Error: Failed to get response.";
             }
         }
         catch (HttpRequestException e)
         {
             Debug.LogError($"Request error: {e.Message}");
-            chatOutputText.text = "Error: Network issue.";
+            return "Error: Network issue.";
         }
         
     }

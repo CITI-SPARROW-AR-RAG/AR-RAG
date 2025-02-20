@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Xml;
 using TMPro;
 using Unity.XR.CoreUtils;
+using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -49,15 +50,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] private MRTKTMPInputField MRTKInputField;
     [SerializeField] private TMP_Text userInputField;
 
-    [SerializeField] private GameObject msgTextBubble;
+    [SerializeField] private GameObject msgUserBubble;
+    [SerializeField] private GameObject msgAIBubble;
     [SerializeField] private GameObject msgTextConversation;
 
-    private async void UserSendMsg(string query)
+    private string SendBubbleMessage(string query, int indexMsg, GameObject BubbleMsg)
     {
         // Instantiate a msg bubble and fills its text value
-        GameObject newMsgBubble = Instantiate(msgTextBubble, msgTextConversation.transform);
+        GameObject newMsgBubble = Instantiate(BubbleMsg, msgTextConversation.transform);
         TMP_Text bubbleText = newMsgBubble.GetComponentInChildren<TMP_Text>();
-        RectTransform messageRT = newMsgBubble.transform.GetChild(1).GetComponent<RectTransform>();
+        RectTransform messageRT = newMsgBubble.transform.GetChild(indexMsg).GetComponent<RectTransform>();
 
 
         if (bubbleText != null)
@@ -82,21 +84,26 @@ public class GameManager : MonoBehaviour
             MRTKInputField.text = string.Empty;
             userInputField.text = string.Empty;
 
-            await chatManager.SendQuery(query);
             Debug.Log(query);
+            return query;
+            
         }
         else
         {
             Debug.Log("No TMP_Text component found in the msgTextBubble prefab.");
+            return null;
         }
     }
 
-    public void OnButtonSendPress()
+    public async void OnButtonSendPress()
     {
         // Check if input empty
         if (userInputField != null && !string.IsNullOrEmpty(userInputField.text))
         {
-            UserSendMsg(userInputField.text);
+            string query = SendBubbleMessage(userInputField.text, 1, msgUserBubble);
+            string response = await chatManager.SendQuery(query);
+            string holder = SendBubbleMessage(response, 0, msgAIBubble);
+            holder = string.Empty;
         }
         else
         {
@@ -104,12 +111,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void OnFrequentInquiriesPress(string inquiries)
+    public async void OnFrequentInquiriesPress(string inquiries)
     {
         // Check if input empty
         if (inquiries != null && !string.IsNullOrEmpty(inquiries))
         {
-            UserSendMsg(inquiries);
+            string query = SendBubbleMessage(inquiries, 1, msgUserBubble);
+            string response = await chatManager.SendQuery(query);
+            string holder = SendBubbleMessage(response, 0, msgAIBubble);
+            holder = string.Empty;
         }
         else
         {
