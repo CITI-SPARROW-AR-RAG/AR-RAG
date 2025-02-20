@@ -19143,8 +19143,8 @@ MonoBehaviour:
   - {fileID: 37320671}
   - {fileID: 793121809}
   - {fileID: 1494061873}
-  inputMsgText: {fileID: 1327603187}
   MRTKInputField: {fileID: 36810564}
+  userInputField: {fileID: 1327603187}
   msgTextBubble: {fileID: 6600933855469968585, guid: 69fe087bf58caf141954adcecd8fb3d7, type: 3}
   msgTextConversation: {fileID: 591661719}
 --- !u!114 &1920956737
@@ -19159,9 +19159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7188f200f80492b43abf059d1be912d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  userInputField: {fileID: 1327603187}
   chatOutputText: {fileID: 928036847}
-  MRTKInputField: {fileID: 36810564}
   backendUrl: http://140.118.101.181:8000/query
 --- !u!1 &1927556800
 GameObject:

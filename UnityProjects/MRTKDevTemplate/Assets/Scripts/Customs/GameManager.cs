@@ -9,6 +9,13 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    private RAGChatManager chatManager;
+
+    private void Start()
+    {
+        chatManager = GetComponent<RAGChatManager>();
+    }
+
     #region PANELS
     public List<GameObject> menuPanels;
 
@@ -39,16 +46,16 @@ public class GameManager : MonoBehaviour
 
     #region AI ASSISTANCE
 
-    [SerializeField] private TMP_Text inputMsgText;
     [SerializeField] private MRTKTMPInputField MRTKInputField;
+    [SerializeField] private TMP_Text userInputField;
 
     [SerializeField] private GameObject msgTextBubble;
     [SerializeField] private GameObject msgTextConversation;
 
-    public void OnButtonSendPress()
+    public async void OnButtonSendPress()
     {
         // Check if input empty
-        if (inputMsgText != null && !string.IsNullOrEmpty(inputMsgText.text))
+        if (userInputField != null && !string.IsNullOrEmpty(userInputField.text))
         {
             // Instantiate a msg bubble and fills its text value
             GameObject newMsgBubble = Instantiate(msgTextBubble, msgTextConversation.transform);
@@ -58,7 +65,9 @@ public class GameManager : MonoBehaviour
 
             if (bubbleText != null)
             {
-                bubbleText.text = inputMsgText.text;
+                string query = userInputField.text;
+
+                bubbleText.text = query;
                 bubbleText.ForceMeshUpdate(true);
 
                 // Updata the layout system
@@ -69,18 +78,21 @@ public class GameManager : MonoBehaviour
                 // Resize the msg bubble
                 messageRT.sizeDelta = new Vector2(messageRT.sizeDelta.x, bubbleText.gameObject.GetComponent<RectTransform>().sizeDelta.y);
                 Debug.Log(bubbleText.gameObject.GetComponent<RectTransform>().sizeDelta.y + " and " + bubbleText.gameObject.name);
+
+                // Updata the whole layout system again
+                LayoutRebuilder.ForceRebuildLayoutImmediate(msgTextConversation.GetComponent<RectTransform>());
+
+                // Clear the input text
+                MRTKInputField.text = string.Empty;
+                userInputField.text = string.Empty;
+
+                await chatManager.SendQuery(query);
+                Debug.Log(query);
             }
             else
             {
                 Debug.Log("No TMP_Text component found in the msgTextBubble prefab.");
             }
-
-            // Updata the whole layout system again
-            LayoutRebuilder.ForceRebuildLayoutImmediate(msgTextConversation.GetComponent<RectTransform>());
-
-            // Clear the input text
-            MRTKInputField.text = string.Empty;
-            inputMsgText.text = string.Empty;
 
         }
         else

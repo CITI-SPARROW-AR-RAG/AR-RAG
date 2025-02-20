@@ -11,7 +11,6 @@ using Newtonsoft.Json;
 using MixedReality.Toolkit.UX;
 using System.Threading.Tasks;
 using System.Net.Http;
-using UnityEditor.PackageManager;
 
 [Serializable]
 public class QueryRequest
@@ -29,33 +28,14 @@ public class QueryResponse
 public class RAGChatManager : MonoBehaviour
 {
     [Header("UI References")]
-    [SerializeField] private TMP_Text userInputField;
     [SerializeField] private TMP_Text chatOutputText;
-    [SerializeField] private MRTKTMPInputField MRTKInputField;
 
     [Header("Backend Settings")]
     [SerializeField] private string backendUrl = "http://140.118.101.181:8000/query";
 
     private static readonly HttpClient client = new HttpClient();
 
-    public async void OnSendMessage()
-    {
-        if (string.IsNullOrEmpty(userInputField.text))
-        {
-            Debug.Log("kosong");
-            return;
-        }
-        string userMessage = userInputField.text;
-
-        await SendQuery(userMessage);
-        Debug.Log(userMessage);
-        //userInputField.text = "";
-
-        //MRTKInputField.text = string.Empty;
-        //userInputField.text = string.Empty;
-    }
-
-    private async Task SendQuery(string question)
+    public async Task SendQuery(string question)
     {
         var requestData = new { question = question };
         string jsonData = JsonConvert.SerializeObject(requestData);
