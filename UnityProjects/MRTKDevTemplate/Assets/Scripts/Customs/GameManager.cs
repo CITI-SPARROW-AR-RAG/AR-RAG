@@ -11,10 +11,12 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     private RAGChatManager chatManager;
+    private float msgTotalVertSize;
 
     private void Start()
     {
         chatManager = GetComponent<RAGChatManager>();
+        msgTotalVertSize = 10f; // Initial tolerance panel size
     }
 
     #region PANELS
@@ -79,8 +81,14 @@ public class GameManager : MonoBehaviour
             // Resize the msg bubble
             messageRT.sizeDelta = new Vector2(messageRT.sizeDelta.x, bubbleText.gameObject.GetComponent<RectTransform>().sizeDelta.y);
             Debug.Log(bubbleText.gameObject.GetComponent<RectTransform>().sizeDelta.y + " and " + bubbleText.gameObject.name);
-            contentRT.sizeDelta = new Vector2(contentRT.sizeDelta.x, contentRT.sizeDelta.y + messageRT.sizeDelta.y);
+            msgTotalVertSize += messageRT.sizeDelta.y; 
 
+            // If the msg size exceeds the panel, resize the panel
+            if (contentRT.sizeDelta.y <= msgTotalVertSize)
+            {
+                contentRT.sizeDelta = new Vector2(contentRT.sizeDelta.x, contentRT.sizeDelta.y + messageRT.sizeDelta.y);
+            }
+            
             // Updata the whole layout system again
             LayoutRebuilder.ForceRebuildLayoutImmediate(contentRT);
 
