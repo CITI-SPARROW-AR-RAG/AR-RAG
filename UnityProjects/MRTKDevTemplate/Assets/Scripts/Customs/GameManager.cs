@@ -58,9 +58,12 @@ public class GameManager : MonoBehaviour
     {
         // Instantiate a msg bubble and fills its text value
         GameObject newMsgBubble = Instantiate(BubbleMsg, msgTextConversation.transform);
+        newMsgBubble.transform.SetAsFirstSibling();
+
+        // Assign proper variables
         TMP_Text bubbleText = newMsgBubble.GetComponentInChildren<TMP_Text>();
         RectTransform messageRT = newMsgBubble.transform.GetChild(indexMsg).GetComponent<RectTransform>();
-
+        RectTransform contentRT = msgTextConversation.GetComponent<RectTransform>();
 
         if (bubbleText != null)
         {
@@ -69,16 +72,17 @@ public class GameManager : MonoBehaviour
             bubbleText.ForceMeshUpdate(true);
 
             // Updata the layout system
-            LayoutRebuilder.ForceRebuildLayoutImmediate(msgTextConversation.GetComponent<RectTransform>());
+            LayoutRebuilder.ForceRebuildLayoutImmediate(contentRT);
             LayoutRebuilder.ForceRebuildLayoutImmediate(newMsgBubble.GetComponent<RectTransform>());
             LayoutRebuilder.ForceRebuildLayoutImmediate(bubbleText.gameObject.GetComponent<RectTransform>());
 
             // Resize the msg bubble
             messageRT.sizeDelta = new Vector2(messageRT.sizeDelta.x, bubbleText.gameObject.GetComponent<RectTransform>().sizeDelta.y);
             Debug.Log(bubbleText.gameObject.GetComponent<RectTransform>().sizeDelta.y + " and " + bubbleText.gameObject.name);
+            contentRT.sizeDelta = new Vector2(contentRT.sizeDelta.x, contentRT.sizeDelta.y + messageRT.sizeDelta.y);
 
             // Updata the whole layout system again
-            LayoutRebuilder.ForceRebuildLayoutImmediate(msgTextConversation.GetComponent<RectTransform>());
+            LayoutRebuilder.ForceRebuildLayoutImmediate(contentRT);
 
             // Clear the input text
             MRTKInputField.text = string.Empty;
