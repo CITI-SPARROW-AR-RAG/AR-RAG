@@ -88,18 +88,18 @@ namespace MixedReality.Toolkit.Examples.Demos
 
         private void DictationSubsystem_RecognitionFinished(DictationSessionEventArgs obj)
         {
-            OnRecognitionFinished.Invoke("Recognition finished. Reason: " + obj.ReasonString);
+            //OnRecognitionFinished.Invoke("Recognition finished. Reason: " + obj.ReasonString);
             HandleDictationShutdown();
         }
 
         private void DictationSubsystem_Recognized(DictationResultEventArgs obj)
         {
-            OnSpeechRecognized.Invoke("Recognized:" + obj.Result);
+            OnSpeechRecognized.Invoke(obj.Result);
         }
 
         private void DictationSubsystem_Recognizing(DictationResultEventArgs obj)
         {
-            OnSpeechRecognizing.Invoke("Recognizing:" + obj.Result);
+            OnSpeechRecognizing.Invoke(obj.Result);
         }
 
         /// <summary>
