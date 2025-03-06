@@ -106,11 +106,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    [SerializeField] private PressableButton unRecord;
+
     public async void OnButtonSendPress()
     {
         // Check if input empty
         if (userInputField != null && !string.IsNullOrEmpty(userInputField.text))
         {
+            unRecord.OnClicked.Invoke();
             string query = SendBubbleMessage(userInputField.text, 1, msgUserBubble);
             string response = await chatManager.SendQuery(query);
             string holder = SendBubbleMessage(response, 0, msgAIBubble);

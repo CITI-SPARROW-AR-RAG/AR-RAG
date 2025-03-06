@@ -14016,6 +14016,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8376646494505211229, guid: c6b351a67ceb69140b199996bbbea156, type: 3}
   m_PrefabInstance: {fileID: 1359323567}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1359323580 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8376646494505211226, guid: c6b351a67ceb69140b199996bbbea156, type: 3}
+  m_PrefabInstance: {fileID: 1359323567}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1359323568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8a7644144f8419bb881ad588ed0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1368429403
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19106,6 +19117,7 @@ MonoBehaviour:
   msgUserBubble: {fileID: 6600933855469968585, guid: 69fe087bf58caf141954adcecd8fb3d7, type: 3}
   msgAIBubble: {fileID: 6600933855469968585, guid: e2828c4cee32dcf4293614a6d8c948bf, type: 3}
   msgTextConversation: {fileID: 591661719}
+  unRecord: {fileID: 1359323580}
 --- !u!114 &1920956737
 MonoBehaviour:
   m_ObjectHideFlags: 0
