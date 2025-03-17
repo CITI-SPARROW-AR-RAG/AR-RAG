@@ -49,7 +49,6 @@ public class GameManager : MonoBehaviour
     #region AI ASSISTANCE
 
     [SerializeField] private MRTKTMPInputField MRTKInputField;
-    [SerializeField] private TMP_Text userInputField;
 
     [SerializeField] private GameObject msgUserBubble;
     [SerializeField] private GameObject msgAIBubble;
@@ -93,7 +92,6 @@ public class GameManager : MonoBehaviour
 
             // Clear the input text
             MRTKInputField.text = string.Empty;
-            userInputField.text = string.Empty;
 
             Debug.Log(query);
             return query;
@@ -111,10 +109,10 @@ public class GameManager : MonoBehaviour
     public async void OnButtonSendPress()
     {
         // Check if input empty
-        if (userInputField != null && !string.IsNullOrEmpty(userInputField.text))
+        if (MRTKInputField != null && !string.IsNullOrEmpty(MRTKInputField.text))
         {
             unRecord.OnClicked.Invoke();
-            string query = SendBubbleMessage(userInputField.text, 1, msgUserBubble);
+            string query = SendBubbleMessage(MRTKInputField.text, 1, msgUserBubble);
             string response = await chatManager.SendQuery(query);
             string holder = SendBubbleMessage(response, 0, msgAIBubble);
             holder = string.Empty;

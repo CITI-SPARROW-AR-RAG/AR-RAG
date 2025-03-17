@@ -94,7 +94,7 @@ namespace MixedReality.Toolkit.Examples.Demos
 
         private void DictationSubsystem_Recognized(DictationResultEventArgs obj)
         {
-            OnSpeechRecognized.Invoke(obj.Result);
+            //OnSpeechRecognized.Invoke(obj.Result);
         }
 
         private void DictationSubsystem_Recognizing(DictationResultEventArgs obj)
