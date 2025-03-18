@@ -1,4 +1,5 @@
 using MixedReality.Toolkit.UX;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
@@ -11,11 +12,13 @@ public class GameManager : MonoBehaviour
 {
     private RAGChatManager chatManager;
     private float msgTotalVertSize;
+    [SerializeField] private List<string> messageState;
 
     private void Start()
     {
         chatManager = GetComponent<RAGChatManager>();
         msgTotalVertSize = 10f; // Initial tolerance panel size
+        messageState = new List<string>();
     }
 
     #region PANELS
@@ -54,7 +57,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject msgAIBubble;
     [SerializeField] private GameObject msgTextConversation;
 
-    private string SendBubbleMessage(string query, int indexMsg, GameObject BubbleMsg)
+    private void SendBubbleMessage(string query, int indexMsg, GameObject BubbleMsg)
     {
         // Instantiate a msg bubble and fills its text value
         GameObject newMsgBubble = Instantiate(BubbleMsg, msgTextConversation.transform);
@@ -92,16 +95,34 @@ public class GameManager : MonoBehaviour
 
             // Clear the input text
             MRTKInputField.text = string.Empty;
+            messageState.Add(query);
 
             Debug.Log(query);
-            return query;
+            return;
             
         }
         else
         {
             Debug.Log("No TMP_Text component found in the msgTextBubble prefab.");
-            return null;
+            return;
         }
+    }
+
+    private string FormatPromptMessageState()
+    {
+        string formattedPrompt = string.Empty;
+        for (int i = 0; i < messageState.Count; i++)
+        {
+            if (i % 2 == 0)
+            {
+                formattedPrompt += "User Message: " + messageState[i] + "\n";
+            }
+            else
+            {
+                formattedPrompt += "AI Assistant: " + messageState[i] + "\n";
+            }
+        }
+        return formattedPrompt;
     }
 
     [SerializeField] private PressableButton unRecord;
@@ -112,10 +133,11 @@ public class GameManager : MonoBehaviour
         if (MRTKInputField != null && !string.IsNullOrEmpty(MRTKInputField.text))
         {
             unRecord.OnClicked.Invoke();
-            string query = SendBubbleMessage(MRTKInputField.text, 1, msgUserBubble);
+
+            SendBubbleMessage(MRTKInputField.text, 1, msgUserBubble);
+            string query = FormatPromptMessageState();
             string response = await chatManager.SendQuery(query);
-            string holder = SendBubbleMessage(response, 0, msgAIBubble);
-            holder = string.Empty;
+            SendBubbleMessage(response, 0, msgAIBubble);
         }
         else
         {
@@ -128,10 +150,10 @@ public class GameManager : MonoBehaviour
         // Check if input empty
         if (inquiries != null && !string.IsNullOrEmpty(inquiries))
         {
-            string query = SendBubbleMessage(inquiries, 1, msgUserBubble);
+            SendBubbleMessage(inquiries, 1, msgUserBubble);
+            string query = FormatPromptMessageState();
             string response = await chatManager.SendQuery(query);
-            string holder = SendBubbleMessage(response, 0, msgAIBubble);
-            holder = string.Empty;
+            SendBubbleMessage(response, 0, msgAIBubble);
         }
         else
         {
