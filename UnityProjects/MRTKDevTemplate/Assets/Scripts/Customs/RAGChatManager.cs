@@ -34,7 +34,7 @@ public class RAGChatManager : MonoBehaviour
 
     public async Task<String> SendQuery(string question)
     {
-        string formattedQuestion = question + " Please answer the question within 4-6 short sentence long. ";
+        string formattedQuestion = question;
         var requestData = new { question = formattedQuestion };
         string jsonData = JsonConvert.SerializeObject(requestData);
         var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
