@@ -108,6 +108,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void ClearChatMessages()
+    {
+        messageState.Clear();
+        foreach (Transform child in msgTextConversation.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        LayoutRebuilder.ForceRebuildLayoutImmediate(msgTextConversation.GetComponent<RectTransform>());
+    }
+
     private string FormatPromptMessageState()
     {
         string formattedPrompt = string.Empty;
