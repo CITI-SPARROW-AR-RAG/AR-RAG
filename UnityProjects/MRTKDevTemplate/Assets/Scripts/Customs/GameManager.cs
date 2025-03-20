@@ -146,7 +146,15 @@ public class GameManager : MonoBehaviour
 
             SendBubbleMessage(MRTKInputField.text, 1, msgUserBubble);
             string query = FormatPromptMessageState();
+
+            SendBubbleMessage("Generating the response ...", 0, msgAIBubble);
             string response = await chatManager.SendQuery(query);
+
+            // Manually remove the last element (Waiting for response)
+            Destroy(msgTextConversation.transform.GetChild(0).gameObject);
+            messageState.RemoveAt(messageState.Count - 1);
+            LayoutRebuilder.ForceRebuildLayoutImmediate(msgTextConversation.GetComponent<RectTransform>());
+
             SendBubbleMessage(response, 0, msgAIBubble);
         }
         else
