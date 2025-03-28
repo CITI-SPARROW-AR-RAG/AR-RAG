@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using MixedReality.Toolkit.UX;
 using System.Threading.Tasks;
 using System.Net.Http;
+using System.Text.RegularExpressions;
 
 [Serializable]
 public class QueryRequest
@@ -32,6 +33,9 @@ public class RAGChatManager : MonoBehaviour
 
     private static readonly HttpClient client = new HttpClient();
 
+    // ?? Add reference to KeywordVisualHandler
+    [SerializeField] private KeywordVisualHandler keywordHandler;
+
     public async Task<String> SendQuery(string question)
     {
         string formattedQuestion = question;
@@ -47,6 +51,21 @@ public class RAGChatManager : MonoBehaviour
             if (response.IsSuccessStatusCode)
             {
                 var queryResponse = JsonConvert.DeserializeObject<QueryResponse>(responseString);
+
+
+                // KeywordVisual Handler method should go in here
+
+                if (keywordHandler != null)
+                {
+                    keywordHandler.HandleAnswer(queryResponse.answer);
+                }
+                else
+                {
+                    Debug.LogWarning("KeywordVisualHandler reference is missing!");
+                }
+
+
+
                 return "Assistant: " + queryResponse.answer;
             }
             else

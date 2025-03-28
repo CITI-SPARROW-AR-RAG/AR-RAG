@@ -1,0 +1,144 @@
+﻿#include "pch-c.h"
+#ifndef _MSC_VER
+# include <alloca.h>
+#else
+# include <malloc.h>
+#endif
+
+
+#include "codegen/il2cpp-codegen-metadata.h"
+
+
+
+
+
+extern void AudioBandPassEffect_get_Filter_mE4069A698954A2208A010B7A1BDA4FFD9C4BDAEA (void);
+extern void AudioBandPassEffect_set_Filter_m27096FE3B329269C69E85BDC5F3AC55766CB2964 (void);
+extern void AudioBandPassEffect_Awake_mEDCD99E67FFA47BDE101F2AE65C832FFDB4D629E (void);
+extern void AudioBandPassEffect_Update_m94AAEEDF66217AE9FDFF7BE12AA91EB285151345 (void);
+extern void AudioBandPassEffect_ApplyFilter_m9C4DB3D8B57D6CDC4EC5BA7B3EDCBFF498D453E5 (void);
+extern void AudioBandPassEffect__ctor_m33B0B9601F6FF24E7901C13E13B0AC53CCEADF86 (void);
+extern void AudioBandPassFilter_get_LowFrequencyCutoff_m0B697128DDEF51F2A474AD43D89A20C99389BFF9 (void);
+extern void AudioBandPassFilter_set_LowFrequencyCutoff_m3696B1896973A4CE778ACC9DEA82D65A0EDBF034 (void);
+extern void AudioBandPassFilter_get_HighFrequencyCutoff_m19FFB66B699D08F38307C3A2A5486CA68351CFE1 (void);
+extern void AudioBandPassFilter_set_HighFrequencyCutoff_m7DF6866FDB7D8BB02ADBDE49526AA1662AAD9473 (void);
+extern void AudioBandPassFilter__ctor_mA182628E7B3B37CEBBCE8528FC5CB51891A29EB8 (void);
+extern void AudioInfluencerController_get_UpdateInterval_m7C2634FA072C28251B8A911FCAFDCF0C5031AE59 (void);
+extern void AudioInfluencerController_set_UpdateInterval_m14C5AFBDAF5B0FC9D709E238BC1ECDC2FE176F7A (void);
+extern void AudioInfluencerController_get_MaxDistance_m2E0477A2FB12A758667877792E52498F9EA4037A (void);
+extern void AudioInfluencerController_set_MaxDistance_m2A2BDCB8227A4D50D2DBBACAA8E2972612903543 (void);
+extern void AudioInfluencerController_get_NativeLowPassCutoffFrequency_m06400D07D7874F2909504C89804FB8C162E447A1 (void);
+extern void AudioInfluencerController_set_NativeLowPassCutoffFrequency_mCF650DFF417279999C6FF937DF19474E98717C93 (void);
+extern void AudioInfluencerController_get_NativeHighPassCutoffFrequency_mBF1022BDCC8C88B7E791F468D94666312A341B5C (void);
+extern void AudioInfluencerController_set_NativeHighPassCutoffFrequency_mA88A1B6F89C65233035D262884AA65991CDB3D94 (void);
+extern void AudioInfluencerController_Awake_m492E458E1A14287E8A8BD529C9A8FE5973156E41 (void);
+extern void AudioInfluencerController_Update_m2649105D5E96B9A131C76377DB00F40F9D43A9AD (void);
+extern void AudioInfluencerController_ApplyEffects_mDE540BA4EA918603505BC5954F6C83E9FF67AD31 (void);
+extern void AudioInfluencerController_RemoveEffects_m1F3D0783D3E998455D2156E186CAA6139524AA3F (void);
+extern void AudioInfluencerController_UpdateActiveInfluencerCollection_mCBAA9D81DC9212E7D7CDFA098B34C5D765D7E031 (void);
+extern void AudioInfluencerController__ctor_m8E989E2BAB0989AB5DEF1D2F9A06F35B70748998 (void);
+extern void AudioInfluencerController__cctor_m532470714BE02EAA5CC8D33F2E069862E0221912 (void);
+extern void AudioOccluder_get_CutoffFrequency_m6BFBE493B5325A0E4571F9F745F1718BEDC2B68E (void);
+extern void AudioOccluder_set_CutoffFrequency_m5ED5B289B469516FA395EED76E4467649D2410C3 (void);
+extern void AudioOccluder_get_VolumePassThrough_m1AD24B1FC07425B1DE38B1C20F70FE500712559A (void);
+extern void AudioOccluder_set_VolumePassThrough_m45E1D960CFF6F5DC8921A9C975EDAB5056C79DC5 (void);
+extern void AudioOccluder_ApplyEffect_m6E68F47761F79500A2166A31DCE445BE02F2915C (void);
+extern void AudioOccluder_RemoveEffect_m4A442C1FA0BF3B1DCCA13679F56310BA21B0AA89 (void);
+extern void AudioOccluder__ctor_m061D85A95711516828FD5018F6004FF4351E2BD7 (void);
+static Il2CppMethodPointer s_methodPointers[35] = 
+{
+	AudioBandPassEffect_get_Filter_mE4069A698954A2208A010B7A1BDA4FFD9C4BDAEA,
+	AudioBandPassEffect_set_Filter_m27096FE3B329269C69E85BDC5F3AC55766CB2964,
+	AudioBandPassEffect_Awake_mEDCD99E67FFA47BDE101F2AE65C832FFDB4D629E,
+	AudioBandPassEffect_Update_m94AAEEDF66217AE9FDFF7BE12AA91EB285151345,
+	AudioBandPassEffect_ApplyFilter_m9C4DB3D8B57D6CDC4EC5BA7B3EDCBFF498D453E5,
+	AudioBandPassEffect__ctor_m33B0B9601F6FF24E7901C13E13B0AC53CCEADF86,
+	AudioBandPassFilter_get_LowFrequencyCutoff_m0B697128DDEF51F2A474AD43D89A20C99389BFF9,
+	AudioBandPassFilter_set_LowFrequencyCutoff_m3696B1896973A4CE778ACC9DEA82D65A0EDBF034,
+	AudioBandPassFilter_get_HighFrequencyCutoff_m19FFB66B699D08F38307C3A2A5486CA68351CFE1,
+	AudioBandPassFilter_set_HighFrequencyCutoff_m7DF6866FDB7D8BB02ADBDE49526AA1662AAD9473,
+	AudioBandPassFilter__ctor_mA182628E7B3B37CEBBCE8528FC5CB51891A29EB8,
+	AudioInfluencerController_get_UpdateInterval_m7C2634FA072C28251B8A911FCAFDCF0C5031AE59,
+	AudioInfluencerController_set_UpdateInterval_m14C5AFBDAF5B0FC9D709E238BC1ECDC2FE176F7A,
+	AudioInfluencerController_get_MaxDistance_m2E0477A2FB12A758667877792E52498F9EA4037A,
+	AudioInfluencerController_set_MaxDistance_m2A2BDCB8227A4D50D2DBBACAA8E2972612903543,
+	AudioInfluencerController_get_NativeLowPassCutoffFrequency_m06400D07D7874F2909504C89804FB8C162E447A1,
+	AudioInfluencerController_set_NativeLowPassCutoffFrequency_mCF650DFF417279999C6FF937DF19474E98717C93,
+	AudioInfluencerController_get_NativeHighPassCutoffFrequency_mBF1022BDCC8C88B7E791F468D94666312A341B5C,
+	AudioInfluencerController_set_NativeHighPassCutoffFrequency_mA88A1B6F89C65233035D262884AA65991CDB3D94,
+	AudioInfluencerController_Awake_m492E458E1A14287E8A8BD529C9A8FE5973156E41,
+	AudioInfluencerController_Update_m2649105D5E96B9A131C76377DB00F40F9D43A9AD,
+	AudioInfluencerController_ApplyEffects_mDE540BA4EA918603505BC5954F6C83E9FF67AD31,
+	AudioInfluencerController_RemoveEffects_m1F3D0783D3E998455D2156E186CAA6139524AA3F,
+	AudioInfluencerController_UpdateActiveInfluencerCollection_mCBAA9D81DC9212E7D7CDFA098B34C5D765D7E031,
+	AudioInfluencerController__ctor_m8E989E2BAB0989AB5DEF1D2F9A06F35B70748998,
+	AudioInfluencerController__cctor_m532470714BE02EAA5CC8D33F2E069862E0221912,
+	AudioOccluder_get_CutoffFrequency_m6BFBE493B5325A0E4571F9F745F1718BEDC2B68E,
+	AudioOccluder_set_CutoffFrequency_m5ED5B289B469516FA395EED76E4467649D2410C3,
+	AudioOccluder_get_VolumePassThrough_m1AD24B1FC07425B1DE38B1C20F70FE500712559A,
+	AudioOccluder_set_VolumePassThrough_m45E1D960CFF6F5DC8921A9C975EDAB5056C79DC5,
+	AudioOccluder_ApplyEffect_m6E68F47761F79500A2166A31DCE445BE02F2915C,
+	AudioOccluder_RemoveEffect_m4A442C1FA0BF3B1DCCA13679F56310BA21B0AA89,
+	AudioOccluder__ctor_m061D85A95711516828FD5018F6004FF4351E2BD7,
+	NULL,
+	NULL,
+};
+static const int32_t s_InvokerIndices[35] = 
+{
+	9700,
+	7854,
+	9876,
+	9876,
+	9876,
+	9876,
+	9763,
+	7912,
+	9763,
+	7912,
+	9876,
+	9763,
+	7912,
+	9763,
+	7912,
+	9763,
+	7912,
+	9763,
+	7912,
+	9876,
+	9876,
+	9876,
+	9876,
+	9876,
+	9876,
+	14785,
+	9763,
+	7912,
+	9763,
+	7912,
+	7854,
+	7854,
+	9876,
+	0,
+	0,
+};
+IL2CPP_EXTERN_C const Il2CppCodeGenModule g_MixedReality_Toolkit_Audio_CodeGenModule;
+const Il2CppCodeGenModule g_MixedReality_Toolkit_Audio_CodeGenModule = 
+{
+	"MixedReality.Toolkit.Audio.dll",
+	35,
+	s_methodPointers,
+	0,
+	NULL,
+	s_InvokerIndices,
+	0,
+	NULL,
+	0,
+	NULL,
+	0,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+};

@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: Mixed Reality Toolkit Organization
-  productName: XR-LLM V1
+  productName: AR-RAG
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -140,9 +140,10 @@ PlayerSettings:
   loadStoreDebugModeEnabled: 0
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
-  bundleVersion: 3.0.0
+  bundleVersion: 4.5.0
   preloadedAssets:
   - {fileID: 0}
+  - {fileID: 11400000, guid: e61946fb8f8ff5e418d6ebb56cca2034, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -865,14 +866,14 @@ PlayerSettings:
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: XR-LLM
-  metroPackageVersion: 3.0.0.0
+  metroPackageName: AR-RAG4.5
+  metroPackageVersion: 4.5.0.0
   metroCertificatePath: Assets/WSATestCertificate.pfx
   metroCertificatePassword: 
   metroCertificateSubject: Microsoft
   metroCertificateIssuer: Microsoft
   metroCertificateNotAfter: 803769c0d5dfda01
-  metroApplicationDescription: XR-LLM Version 1
+  metroApplicationDescription: AR-RAG
   wsaImages: {}
   metroTileShortName: MRTK3
   metroTileShowName: 0
